@@ -1,6 +1,4 @@
 <script>
-import InputText from 'primevue/inputtext'
-import FloatLabel from 'primevue/floatlabel'
 import { BASE_URL } from '../globals'
 import axios from 'axios'
 
@@ -12,10 +10,7 @@ export default {
       email: null
     }
   },
-  components: {
-    InputText,
-    FloatLabel
-  },
+
   methods: {
     onChange(e) {
       this[e.target.name] = e.target.value
@@ -39,14 +34,22 @@ export default {
 
 <template>
   <form @submit="handleSubmit">
-    <FloatLabel>
-      <InputText id="username" v-model="name" @input="onChange" />
-      <label for="username">Username</label>
-    </FloatLabel>
-    <FloatLabel>
-      <InputText id="email" v-model="email" @input="onChange" type="email" />
-      <label for="email">Email</label>
-    </FloatLabel>
+    <input
+      placeholder="Name"
+      :value="name"
+      name="name"
+      type="text"
+      @input="onChange"
+    />
+
+    <input
+      placeholder="Email"
+      :value="email"
+      name="email"
+      type="email"
+      @input="onChange"
+    />
+
     <button>submit</button>
   </form>
 </template>
