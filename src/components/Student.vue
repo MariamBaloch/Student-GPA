@@ -41,6 +41,7 @@ export default {
           course: id
         })
         console.log(res.data)
+        this.getStudentDetails()
       } catch (error) {
         console.log(error)
       }
