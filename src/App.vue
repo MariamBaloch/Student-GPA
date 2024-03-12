@@ -1,17 +1,20 @@
 <script>
-// import StudentForm from './components/StudentForm.vue'
-import AddCourse from './components/AddCourse.vue'
+import NavBar from './components/NavBar.vue'
+
 export default {
   name: 'App',
   components: {
-    // StudentForm
-    AddCourse
-  }
+    NavBar
+
+}
 }
 </script>
 
 <template>
-  <div>student GPA</div>
-  <AddCourse/>
-  <!-- <StudentForm /> -->
+  <div>
+    <NavBar />
+    <main>
+      <router-view></router-view>
+    </main>
+  </div>
 </template>
