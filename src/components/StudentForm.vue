@@ -33,23 +33,25 @@ export default {
 </script>
 
 <template>
-  <form @submit="handleSubmit">
-    <input
-      placeholder="Name"
-      :value="name"
-      name="name"
-      type="text"
-      @input="onChange"
-    />
+  <div class="form-container">
+    <form @submit="handleSubmit">
+      <input
+        placeholder="Name"
+        :value="name"
+        name="name"
+        type="text"
+        @input="onChange"
+      />
 
-    <input
-      placeholder="Email"
-      :value="email"
-      name="email"
-      type="email"
-      @input="onChange"
-    />
+      <input
+        placeholder="Email"
+        :value="email"
+        name="email"
+        type="email"
+        @input="onChange"
+      />
 
-    <button>submit</button>
-  </form>
+      <button>submit</button>
+    </form>
+  </div>
 </template>
