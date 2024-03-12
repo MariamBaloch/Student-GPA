@@ -1,22 +1,19 @@
 body {
   margin: 0;
+  padding: 0;
 }
 
 html {
   background-color: #dad4fa;
 }
 
-img {
-  width: 300px;
-}
-
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Avenir, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #d4d2d2;
-  margin-top: 60px;
+  margin-top: 10%;
 }
 
 .form-container {
@@ -41,8 +38,7 @@ input {
   border: 1px solid #4a4179;
 }
 
-input,
-button {
+input {
   width: 70%;
   margin: 0.5em auto;
   padding: 0.6em 1em;
@@ -53,10 +49,19 @@ button {
   transition: all 0.2s ease;
 }
 
-button {
+.form-button {
   background-color: #4a4179;
   border: none;
   font-weight: 700;
+
+  width: 70%;
+  margin: 0.5em auto;
+  padding: 0.6em 1em;
+  border-radius: 10px;
+
+  color: #ffffff;
+  font-size: 1.2rem;
+  transition: all 0.2s ease;
 }
 
 button:disabled {
@@ -66,8 +71,8 @@ button:disabled {
 }
 
 button:hover:not([disabled]) {
-  background-color: #a1a6c0;
-  color: #4a4179;
+  background-color: #665f8e;
+  color: #ffffff;
 }
 
 input:focus,

@@ -33,6 +33,7 @@ export default {
 </script>
 
 <template>
+  <div class=form-container > 
   <form @submit="handleSubmit">
     <input
       placeholder="Name"
@@ -50,6 +51,7 @@ export default {
       @input="onChange"
     />
 
-    <button>submit</button>
+    <button class="form-button">submit</button>
   </form>
+</div>
 </template>

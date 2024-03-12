@@ -35,7 +35,7 @@ export default {
         type="text"
         @input="handleFormChange"
       />
-      <button type="submit">Add Course</button>
+      <button class="form-button" type="submit">Add Course</button>
     </form>
   </div>
 </template>
