@@ -8,8 +8,7 @@ import Student from './components/Student.vue'
 
 const routes = [
   { path: '/addstudent', component: StudentForm, name: 'StudentForm' },
-  { path: '/addcourse', component: AddCourse, name: 'AddCourse' }
-  ,
+  { path: '/addcourse', component: AddCourse, name: 'AddCourse' },
   { path: '/Student', component: Student, name: 'Student' }
 ]
 
