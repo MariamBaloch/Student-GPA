@@ -27,12 +27,6 @@ export default {
       this.students = res.data
     },
     onRowSelect(e) {
-      // this.$toast.add({
-      //   severity: 'info',
-      //   summary: 'Product Selected',
-      //   detail: 'Name: ' + event.data.name,
-      //   life: 3000
-      // })
       console.log()
       this.$router.push(`/enrolledCourses/${e.data._id}`)
     }
@@ -49,8 +43,8 @@ export default {
       :metaKeySelection="false"
       :value="students"
       paginator
-      :rows="5"
-      :rowsPerPageOptions="[5, 10, 20, 50]"
+      :rows="10"
+      :rowsPerPageOptions="[10, 25, 50, 75, 100]"
       tableStyle="min-width: 50rem"
       paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
       currentPageReportTemplate="{first} to {last} of {totalRecords}"
@@ -62,8 +56,8 @@ export default {
       <template #paginatorend>
         <Button type="button" icon="pi pi-download" text />
       </template>
-      <Column field="name" header="Name" style="width: 50%"></Column>
-      <Column field="email" header="Email" style="width: 50%"></Column>
+      <Column field="name" header="Name" style="width: 40%"></Column>
+      <Column field="email" header="Email" style="width: 25%"></Column>
       <Column field="gpa" header="Overall GPA" style="width: 25%"></Column>
     </DataTable>
   </div>
