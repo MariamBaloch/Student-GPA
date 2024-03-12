@@ -1,8 +1,8 @@
 <script>
 import DataTable from 'primevue/datatable'
 import Column from 'primevue/column'
-import { BASE_URL } from '../globals'
 import Button from 'primevue/button'
+import { BASE_URL } from '../globals'
 import axios from 'axios'
 
 export default {
