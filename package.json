@@ -10,7 +10,13 @@
   },
   "dependencies": {
     "axios": "^1.6.7",
+<<<<<<< HEAD
+    "primevue": "^3.49.1",
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.0"
+=======
     "vue": "^3.4.21"
+>>>>>>> 744c15506436d39d3d4d7984e7ce7233c17d1643
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",
