@@ -8,6 +8,8 @@ import Column from 'primevue/column'
 import Button from 'primevue/button'
 import Dropdown from 'primevue/dropdown'
 import Tag from 'primevue/tag'
+import { FilterMatchMode } from 'primevue/api'
+import InputText from 'primevue/inputtext'
 
 export default {
   name: 'Student',
@@ -18,7 +20,8 @@ export default {
     Column,
     Button,
     Dropdown,
-    Tag
+    Tag,
+    InputText
   },
   data: () => ({
     active: 0,
@@ -33,7 +36,12 @@ export default {
       { label: 'D', value: 'D' },
       { label: 'F', value: 'F' }
     ],
-    grade: null
+    grade: null,
+    filters: {
+      'course.name': { value: null, matchMode: FilterMatchMode.STARTS_WITH },
+      'grade.letter': { value: null, matchMode: FilterMatchMode.STARTS_WITH },
+      name: { value: null, matchMode: FilterMatchMode.STARTS_WITH }
+    }
   }),
   mounted() {
     this.getStudentDetails()
@@ -57,11 +65,9 @@ export default {
           student: this.$route.params.id,
           course: id
         })
-        console.log(res.data)
+
         this.getStudentDetails()
-      } catch (error) {
-        console.log(error)
-      }
+      } catch (error) {}
     },
     async onRowEditSave(event) {
       let { newData, index } = event
@@ -86,12 +92,12 @@ export default {
         default:
           return null
       }
-      console.log('grade', this.grade)
-      let res = await axios.put(`${BASE_URL}/enrolledCourses/${newData._id}`, {
+
+      await axios.put(`${BASE_URL}/enrolledCourses/${newData._id}`, {
         score: this.grade.score,
         letter: this.grade.letter
       })
-      console.log(res)
+      this.getStudentDetails()
     },
     getStatusLabel(grades) {
       switch (grades) {
@@ -108,6 +114,16 @@ export default {
         default:
           return null
       }
+    },
+    gradeStyle(data) {
+      return [
+        {
+          'circle red': data.grade.letter === 'F',
+          'circle orange':
+            data.grade.letter === 'D' || data.grade.letter === 'C',
+          'circle teal': data.grade.letter === 'B' || data.grade.letter === 'A'
+        }
+      ]
     }
   }
 }
@@ -124,6 +140,8 @@ export default {
     <TabView v-model:activeIndex="active">
       <TabPanel header="Enrolled Courses">
         <DataTable
+          v-model:filters="filters"
+          filterDisplay="row"
           v-model:editingRows="editingRows"
           editMode="row"
           dataKey="_id"
@@ -137,17 +155,27 @@ export default {
           paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
           currentPageReportTemplate="{first} to {last} of {totalRecords}"
         >
+          <template #empty> No Courses found. </template>
           <template #paginatorstart>
             <Button type="button" icon="pi pi-refresh" text />
           </template>
           <template #paginatorend>
             <Button type="button" icon="pi pi-download" text />
           </template>
-          <Column
-            field="course.name"
-            header="Course"
-            style="width: 50%"
-          ></Column>
+          <Column field="course.name" header="Course" style="width: 50%">
+            <template #body="{ data }">
+              {{ data.course.name }}
+            </template>
+            <template #filter="{ filterModel, filterCallback }">
+              <InputText
+                v-model="filterModel.value"
+                type="text"
+                @input="filterCallback()"
+                class="p-column-filter"
+                placeholder="Search by course"
+              />
+            </template>
+          </Column>
           <Column field="grade.letter" header="Grade" style="width: 50%">
             <template #editor="{ data, field }">
               <Dropdown
@@ -165,6 +193,21 @@ export default {
                 </template>
               </Dropdown>
             </template>
+            <template #body="slotProps">
+              <div :class="gradeStyle(slotProps.data)">
+                {{ slotProps.data.grade.letter }}
+              </div>
+            </template>
+
+            <template #filter="{ filterModel, filterCallback }">
+              <InputText
+                v-model="filterModel.value"
+                type="text"
+                @input="filterCallback()"
+                class="p-column-filter"
+                placeholder="Search by grade"
+              />
+            </template>
           </Column>
           <Column
             :rowEditor="true"
@@ -175,6 +218,8 @@ export default {
       </TabPanel>
       <TabPanel header=" All Courses">
         <DataTable
+          v-model:filters="filters"
+          filterDisplay="row"
           v-if="allCourses"
           :value="allCourses"
           paginator
@@ -184,13 +229,27 @@ export default {
           paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
           currentPageReportTemplate="{first} to {last} of {totalRecords}"
         >
+          <template #empty> No Courses found. </template>
           <template #paginatorstart>
             <Button type="button" icon="pi pi-refresh" text />
           </template>
           <template #paginatorend>
             <Button type="button" icon="pi pi-download" text />
           </template>
-          <Column field="name" header="Course" style="width: 50%"></Column>
+          <Column field="name" header="Course" style="width: 50%">
+            <template #body="{ data }">
+              {{ data.name }}
+            </template>
+            <template #filter="{ filterModel, filterCallback }">
+              <InputText
+                v-model="filterModel.value"
+                type="text"
+                @input="filterCallback()"
+                class="p-column-filter"
+                placeholder="Search by course"
+              />
+            </template>
+          </Column>
           <Column header="Enroll" style="width: 40%">
             <template #body="{ data }">
               <Button type="button" label="Enroll" @click="enroll(data._id)" />
