@@ -61,7 +61,7 @@ export default {
     },
     async enroll(id) {
       try {
-        let res = await axios.post(`${BASE_URL}/enrolledCourses`, {
+        await axios.post(`${BASE_URL}/enrolledCourses`, {
           student: this.$route.params.id,
           course: id
         })
@@ -176,7 +176,16 @@ export default {
               />
             </template>
           </Column>
-          <Column field="grade.letter" header="Grade" style="width: 50%">
+          <Column
+            field="grade.letter"
+            header="Grade"
+            style="width: 50; text-align: center"
+          >
+            <template #header="{ header }">
+              <div style="min-width: 15vw">
+                {{ header }}
+              </div>
+            </template>
             <template #editor="{ data, field }">
               <Dropdown
                 v-model="data[field]"
@@ -195,7 +204,11 @@ export default {
             </template>
             <template #body="slotProps">
               <div :class="gradeStyle(slotProps.data)">
-                {{ slotProps.data.grade.letter }}
+                {{
+                  slotProps.data.grade.letter !== null
+                    ? slotProps.data.grade.letter
+                    : 'No Grade'
+                }}
               </div>
             </template>
 
