@@ -138,8 +138,8 @@ export default {
         <h3 Class="profile">{{ studentDetails.email }}</h3>
       </div>
       <div class="right-div">
-        <h3 Class="profile-gpa" v-if="studentDetails.gpa">
-          {{ studentDetails.gpa }} GPA
+        <h3 Class="profile-gpa" v-if="studentDetails.gpa !== null">
+          {{ studentDetails.gpa }} CGPA
         </h3>
       </div>
     </div>
@@ -274,7 +274,12 @@ export default {
           </Column>
           <Column header="Enroll" style="width: 40%">
             <template #body="{ data }">
-              <Button type="button" label="Enroll" @click="enroll(data._id)" />
+              <Button
+                type="button"
+                label="Enroll"
+                @click="enroll(data._id)"
+                severity="secondary"
+              />
             </template>
           </Column>
         </DataTable>
