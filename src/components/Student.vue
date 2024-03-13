@@ -286,7 +286,7 @@ export default {
 <style>
 .container1 {
   display: flex;
-
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -298,7 +298,7 @@ export default {
 
 .right-div {
   display: inline-block;
-  padding-left: 60%;
+  padding-right: 9%;
   font-size: 300%;
 }
 
