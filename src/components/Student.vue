@@ -40,10 +40,14 @@ export default {
   },
   methods: {
     async getStudentDetails() {
+      let studentRes = await axios.get(
+        `${BASE_URL}/students/${this.$route.params.id}`
+      )
+      this.studentDetails = studentRes.data
+
       let res = await axios.get(
         `${BASE_URL}/enrolledCourses/${this.$route.params.id}`
       )
-      this.studentDetails = res.data
       this.allCourses = res.data.courses
       this.enrolled = res.data.enrolledCourses
     },
@@ -110,6 +114,12 @@ export default {
 </script>
 
 <template>
+  <div v-if="studentDetails">
+    <h1>Student</h1>
+    <h3>{{ studentDetails.name }}</h3>
+    <h4>{{ studentDetails.email }}</h4>
+    <h4>{{ studentDetails.gpa }}</h4>
+  </div>
   <div class="card">
     <TabView v-model:activeIndex="active">
       <TabPanel header="Enrolled Courses">

@@ -42,7 +42,7 @@ export default {
 }
 
 /* Add a color to the active/current link */
-.topnav a.active {
+.topnav a.router-link-exact-active {
   background-color: #ffffff;
   color: #4a4179;
 }
