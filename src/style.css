@@ -4,7 +4,7 @@ body {
 }
 
 html {
-  background-color: #dad4fa;
+  background-color: #f6f5f9;
 }
 
 #app {
@@ -13,7 +13,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #d4d2d2;
-  margin-top: 10%;
+  margin-top: 6%;
 }
 
 .form-container {
@@ -33,22 +33,6 @@ form {
   align-items: center;
 }
 
-input {
-  background: inherit;
-  border: 1px solid #4a4179;
-}
-
-input {
-  width: 70%;
-  margin: 0.5em auto;
-  padding: 0.6em 1em;
-  border-radius: 10px;
-
-  color: #ffffff;
-  font-size: 1.2rem;
-  transition: all 0.2s ease;
-}
-
 .form-button {
   background-color: #4a4179;
   border: none;
@@ -66,19 +50,13 @@ input {
 
 button:disabled {
   cursor: auto;
-  background-color: #4a4179;
-  color: #ffffff;
+  /* background-color: #4a4179; */
+  color: #cfc1e4;
 }
 
 button:hover:not([disabled]) {
   background-color: #665f8e;
   color: #ffffff;
-}
-
-input:focus,
-input:active {
-  outline: none;
-  background: #dad4fa;
 }
 
 button {
@@ -88,4 +66,26 @@ button {
 .title {
   color: #4a4179;
   padding-bottom: -10%;
+}
+.circle {
+  border-radius: 50%;
+  width: 2.4rem;
+  height: 2.4rem;
+  display: inline-flex;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.875rem;
+}
+.red {
+  background-color: #fee2e2;
+  color: #9b2c2c;
+}
+.orange {
+  background-color: #fef3c7;
+  color: #b45309;
+}
+.teal {
+  background-color: #d1fae5;
+  color: #065f46;
 }

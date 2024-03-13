@@ -4,19 +4,27 @@ import Column from 'primevue/column'
 import Button from 'primevue/button'
 import { BASE_URL } from '../globals'
 import axios from 'axios'
+import { FilterMatchMode } from 'primevue/api'
+import InputText from 'primevue/inputtext'
 
 export default {
   name: 'HomePage',
   data: function () {
     return {
       students: null,
-      selectedStudent: null
+      selectedStudent: null,
+      filters: {
+        name: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
+        email: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
+        gpa: { value: null, matchMode: FilterMatchMode.STARTS_WITH }
+      }
     }
   },
   components: {
     DataTable,
     Column,
-    Button
+    Button,
+    InputText
   },
   mounted() {
     this.getStudents()
@@ -27,8 +35,16 @@ export default {
       this.students = res.data
     },
     onRowSelect(e) {
-      console.log()
       this.$router.push(`/enrolledCourses/${e.data._id}`)
+    },
+    overallGPA(data) {
+      return [
+        {
+          'circle red': data.gpa === 0,
+          'circle orange': data.gpa > 0 && data.gpa < 3,
+          'circle teal': data.gpa >= 3 && data.gpa <= 4
+        }
+      ]
     }
   }
 }
@@ -37,6 +53,8 @@ export default {
 <template>
   <div class="card">
     <DataTable
+      v-model:filters="filters"
+      filterDisplay="row"
       v-model:selection="selectedStudent"
       selectionMode="single"
       dataKey="_id"
@@ -50,15 +68,57 @@ export default {
       currentPageReportTemplate="{first} to {last} of {totalRecords}"
       @rowSelect="onRowSelect"
     >
+      <template #empty> No students found. </template>
       <template #paginatorstart>
         <Button type="button" icon="pi pi-refresh" text />
       </template>
       <template #paginatorend>
         <Button type="button" icon="pi pi-download" text />
       </template>
-      <Column field="name" header="Name" style="width: 40%"></Column>
-      <Column field="email" header="Email" style="width: 25%"></Column>
-      <Column field="gpa" header="Overall GPA" style="width: 25%"></Column>
+      <Column field="name" header="Name" style="width: 40%">
+        <template #body="{ data }">
+          {{ data.name }}
+        </template>
+        <template #filter="{ filterModel, filterCallback }">
+          <InputText
+            v-model="filterModel.value"
+            type="text"
+            @input="filterCallback()"
+            class="p-column-filter"
+            placeholder="Search by name"
+          />
+        </template>
+      </Column>
+      <Column field="email" header="Email" style="width: 25%">
+        <template #body="{ data }">
+          {{ data.email }}
+        </template>
+        <template #filter="{ filterModel, filterCallback }">
+          <InputText
+            v-model="filterModel.value"
+            type="text"
+            @input="filterCallback()"
+            class="p-column-filter"
+            placeholder="Search by email"
+          /> </template
+      ></Column>
+      <Column field="gpa" header="CGPA" style="width: 25%">
+        <template #body="slotProps">
+          <div :class="overallGPA(slotProps.data)">
+            {{ slotProps.data.gpa }}
+          </div>
+        </template>
+
+        <template #filter="{ filterModel, filterCallback }">
+          <InputText
+            v-model="filterModel.value"
+            type="text"
+            @input="filterCallback()"
+            class="p-column-filter"
+            placeholder="Search by GPA"
+          />
+        </template>
+      </Column>
     </DataTable>
   </div>
 </template>
