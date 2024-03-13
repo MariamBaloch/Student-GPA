@@ -3,7 +3,7 @@ body {
   padding: 0;
 }
 
-/* html {
+html {
   background-color: #dad4fa;
 }
 
@@ -83,4 +83,9 @@ input:active {
 
 button {
   cursor: pointer;
+}
+
+.title {
+  color: #4a4179;
+  padding-bottom: -10%;
 }
