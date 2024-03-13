@@ -62,3 +62,10 @@ export default {
     </DataTable>
   </div>
 </template>
+
+<style>
+.card {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+</style>
