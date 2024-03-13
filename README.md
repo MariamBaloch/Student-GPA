@@ -64,17 +64,27 @@ npm start
 
 View a list of students with their names, emails, and overall GPAs.
 
+![Image](https://i.ibb.co/Bn0jYtQ/Screenshot-2024-03-13-at-2-11-20-PM.png)
+
 ### Course Enrollment
 
 Click on a student to view their enrolled courses and enroll them in additional courses.
+
+![Image](https://i.ibb.co/wQJMMbd/Screenshot-2024-03-13-at-2-14-34-PM.png)
 
 ### GPA Management
 
 Update the GPA for enrolled courses to reflect the latest grades.
 
+![Image](https://i.ibb.co/3dVhvFs/Screenshot-2024-03-13-at-2-13-36-PM.png)
+
 ### Add New Entries
 
 Add new students or courses to the system directly from the dashboard.
+
+![Image](https://i.ibb.co/52mrzMd/Screenshot-2024-03-13-at-1-57-01-PM.png)
+
+![Imagw](https://i.ibb.co/QDhwcqW/Screenshot-2024-03-13-at-1-59-06-PM.png)
 
 ## Acknowledgments
 
