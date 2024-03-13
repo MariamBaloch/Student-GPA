@@ -102,10 +102,15 @@ export default {
             placeholder="Search by email"
           /> </template
       ></Column>
-      <Column field="gpa" header="CGPA" style="width: 25%">
+      <Column field="gpa" header="CGPA" style="width: 25%; text-align: center">
+        <template #header="{ header }">
+          <div style="min-width: 10vw">
+            {{ header }}
+          </div>
+        </template>
         <template #body="slotProps">
           <div :class="overallGPA(slotProps.data)">
-            {{ slotProps.data.gpa }}
+            {{ slotProps.data.gpa !== null ? slotProps.data.gpa : 'No CGPA' }}
           </div>
         </template>
 
@@ -115,7 +120,7 @@ export default {
             type="text"
             @input="filterCallback()"
             class="p-column-filter"
-            placeholder="Search by GPA"
+            placeholder="Search by CGPA"
           />
         </template>
       </Column>
