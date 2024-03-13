@@ -138,7 +138,9 @@ export default {
         <h3 Class="profile">{{ studentDetails.email }}</h3>
       </div>
       <div class="right-div">
-        <h3 Class="profile-gpa">{{ studentDetails.gpa }} GPA</h3>
+        <h3 Class="profile-gpa" v-if="studentDetails.gpa">
+          {{ studentDetails.gpa }} GPA
+        </h3>
       </div>
     </div>
   </div>
