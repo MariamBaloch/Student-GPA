@@ -28,8 +28,9 @@ export default {
 <template>
   <div class="form-container">
     <form @submit="handleSubmit">
+      <h1 class="title">Add Course</h1>
       <input
-        placeholder="Add Course"
+        placeholder="Course Name"
         :value="name"
         name="name"
         type="text"
@@ -40,7 +41,7 @@ export default {
   </div>
 </template>
 
-<style scoped>
+<style>
 
 
 

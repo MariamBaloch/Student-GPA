@@ -34,6 +34,7 @@ export default {
 
 <template>
   <div class=form-container > 
+    <h1 class="title">Add Student</h1>
     <form @submit="handleSubmit">
       <input
         placeholder="Name"
