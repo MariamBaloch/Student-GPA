@@ -6,6 +6,8 @@ The Student GPA Admin Dashboard is a web application designed to help administra
 
 ## Live Link
 
+Click the following link to be redirected to the live version of the code. [https://student-gpa.surge.sh](https://student-gpa.surge.sh/)
+
 ## Technologies Used
 
 Frontend: Vue.js with Vuex for state management.
