@@ -130,12 +130,19 @@ export default {
 </script>
 
 <template>
-  <div v-if="studentDetails">
-    <h1>Student</h1>
-    <h3>{{ studentDetails.name }}</h3>
-    <h4>{{ studentDetails.email }}</h4>
-    <h4>{{ studentDetails.gpa }}</h4>
+  <div class="container2">
+    <div v-if="studentDetails" class="container1">
+      <div class="left-div">
+        <h1 Class="profile">Student</h1>
+        <h3 Class="profile">{{ studentDetails.name }}</h3>
+        <h3 Class="profile">{{ studentDetails.email }}</h3>
+      </div>
+      <div class="right-div">
+        <h3 Class="profile-gpa">{{ studentDetails.gpa }} GPA</h3>
+      </div>
+    </div>
   </div>
+
   <div class="card">
     <TabView v-model:activeIndex="active">
       <TabPanel header="Enrolled Courses">
@@ -260,3 +267,56 @@ export default {
     </TabView>
   </div>
 </template>
+
+<style>
+.container1 {
+  display: flex;
+
+  align-items: center;
+}
+
+.left-div {
+  display: inline-block;
+  padding-left: 9%;
+  line-height: 0.3;
+}
+
+.right-div {
+  display: inline-block;
+  padding-left: 60%;
+  font-size: 300%;
+}
+
+.profile {
+  color: #4a4179;
+  text-align: left;
+  /* padding-bottom: 0.005%; */
+}
+
+.profile-picture {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 20px;
+}
+
+.profile-picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-gpa {
+  color: #4a4179;
+  text-align: right;
+}
+
+.container2 {
+  display: inline-block;
+  background-color: rgb(255, 255, 255);
+  width: 90%;
+  height: 100%;
+  margin-bottom: 2%;
+}
+</style>
